@@ -1,0 +1,20 @@
+{
+  "id": "pdf-chatbot-node",
+  "name": "PDF Chatbot with NLP (Node.js)",
+  "description": "Ask questions from uploaded PDFs using local NLP",
+  "version": "1.0",
+  "author": "Your Name",
+  "license": "MIT",
+  "endpoints": {
+    "/upload": {
+      "method": "POST",
+      "auth": true,
+      "cost": 2
+    },
+    "/ask": {
+      "method": "POST",
+      "auth": true,
+      "cost": 1
+    }
+  }
+}
