@@ -1,58 +1,54 @@
-# Node.js PDF Chatbot with Local NLP & HyperCycle Cost Headers
+# Decentralized NLP Bot
 
-A lightweight API-only PDF chatbot using TF-IDF and cosine similarity. Built with:
-- Node.js + Express
-- PDF parsing
-- NLP using `natural`
-- Token-based auth and cost headers
-- HyperCycle-compatible `/manifest.json`
+This is a Node.js-based decentralized NLP chatbot server with Docker support. It allows PDF uploads for future parsing and NLP processing.
 
-## Setup
+## Features
 
-### Local
+- Express.js server
+- PDF upload endpoint (`/upload`)
+- Multer-based file upload handler
+- Dockerized for easy deployment
+
+## Project Structure
+
+```
+decentralized-nlp-bot/
+├── Dockerfile
+├── index.js
+├── package.json
+├── README.md
+└── uploads/         # For storing uploaded PDFs
+```
+
+## Usage
+
+### 1. Local Development
 
 ```bash
 npm install
-node app.js
+npm start
 ```
 
-### Docker
+Server will run on `http://localhost:3000`
+
+### 2. Docker
+
+To build and run using Docker:
 
 ```bash
-docker build -t pdf-chatbot .
-docker run -p 3000:3000 pdf-chatbot
+docker build -t decentralized-nlp-bot .
+docker run -p 3000:3000 decentralized-nlp-bot
 ```
 
-## API Endpoints
+### 3. Uploading PDF
 
-### `POST /upload`
+Use a tool like Postman or cURL:
 
-- Headers:
-  - `Authorization: secret-token-123`
-  - `X-Hyper-Cost: 2`
-- FormData:
-  - `pdf`: file
-
-### `POST /ask`
-
-- Headers:
-  - `Authorization: secret-token-123`
-  - `X-Hyper-Cost: 1`
-- JSON body:
-```json
-{
-  "question": "What is the main topic?"
-}
+```bash
+curl -F 'pdf=@yourfile.pdf' http://localhost:3000/upload
 ```
 
-### `GET /manifest.json`
+## Endpoints
 
-Returns metadata for HyperCycle agent discovery.
-
-## License
-
-MIT
-
-
-docker build -t hypc-pdf-chatbot .
-docker run -p 3000:3000 hypc-pdf-chatbot
+- `GET /` – Health check
+- `POST /upload` – Upload a PDF file
